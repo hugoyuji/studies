@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class AlunoService {
 
-    AlunoRepository repository;
+    private final AlunoRepository repository;
 
     public AlunoService(AlunoRepository repository) {
         this.repository = repository;
