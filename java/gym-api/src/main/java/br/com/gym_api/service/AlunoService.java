@@ -1,5 +1,7 @@
 package br.com.gym_api.service;
 
+import br.com.gym_api.exception.AlunoEmailJaCadastradoException;
+import br.com.gym_api.exception.AlunoNaoEncontradoException;
 import br.com.gym_api.model.Aluno;
 import br.com.gym_api.repository.AlunoRepository;
 import org.springframework.stereotype.Service;
@@ -16,12 +18,17 @@ public class AlunoService {
     }
 
     public Aluno cadastrar(Aluno aluno){
+
+        if(repository.existsByEmail(aluno.getEmail())){
+            throw new AlunoEmailJaCadastradoException("E-mail já cadastrado.");
+        }
+
         return repository.save(aluno);
     }
 
     public Aluno buscarPorId(Long id){
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Aluno não encontrado."));
+                .orElseThrow(() -> new AlunoNaoEncontradoException("Aluno não encontrado."));
     }
 
     public List<Aluno> listar(){
@@ -30,6 +37,10 @@ public class AlunoService {
 
     public Aluno alterar(Long id, Aluno aluno){
         Aluno alunoExistente = buscarPorId(id);
+
+        if(repository.existsByEmailAndIdNot(aluno.getEmail(), id)){
+            throw new AlunoEmailJaCadastradoException("E-mail já cadastrado.");
+        }
 
         alunoExistente.setNome(aluno.getNome());
         alunoExistente.setEmail(aluno.getEmail());
@@ -42,6 +53,7 @@ public class AlunoService {
     }
 
     public void deletar(Long id){
+        buscarPorId(id);
         repository.deleteById(id);
     }
 }
