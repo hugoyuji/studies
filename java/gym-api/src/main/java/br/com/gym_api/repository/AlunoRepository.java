@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
+
+    boolean existsByEmail (String email);
+
+    boolean existsByEmailAndIdNot(String email, Long id);
 }
