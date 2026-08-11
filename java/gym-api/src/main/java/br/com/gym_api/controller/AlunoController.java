@@ -1,6 +1,7 @@
 package br.com.gym_api.controller;
 
-import br.com.gym_api.model.Aluno;
+import br.com.gym_api.dto.request.AlunoRequestDTO;
+import br.com.gym_api.dto.response.AlunoResponseDTO;
 import br.com.gym_api.service.AlunoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,22 +18,22 @@ public class AlunoController {
     }
 
     @PostMapping
-    public Aluno cadastrar(@RequestBody Aluno aluno){
-        return service.cadastrar(aluno);
+    public AlunoResponseDTO cadastrar(@RequestBody AlunoRequestDTO alunoDTO){
+        return service.cadastrar(alunoDTO);
     }
 
     @GetMapping("/{id}")
-    public Aluno buscarPorId(@PathVariable Long id){
+    public AlunoResponseDTO buscarPorId(@PathVariable Long id){
         return service.buscarPorId(id);
     }
 
     @GetMapping
-    public List<Aluno> listar(){
+    public List<AlunoResponseDTO> listar(){
         return service.listar();
     }
 
     @PutMapping("/{id}")
-    public Aluno alterar(@PathVariable Long id, @RequestBody Aluno aluno){
+    public AlunoResponseDTO alterar(@PathVariable Long id, @RequestBody AlunoRequestDTO aluno){
         return service.alterar(id, aluno);
     }
 
