@@ -1,5 +1,7 @@
 package br.com.gym_api.service;
 
+import br.com.gym_api.dto.request.AlunoRequestDTO;
+import br.com.gym_api.dto.response.AlunoResponseDTO;
 import br.com.gym_api.exception.AlunoEmailJaCadastradoException;
 import br.com.gym_api.exception.AlunoNaoEncontradoException;
 import br.com.gym_api.model.Aluno;
@@ -17,13 +19,34 @@ public class AlunoService {
         this.repository = repository;
     }
 
-    public Aluno cadastrar(Aluno aluno){
+    public AlunoResponseDTO cadastrar(AlunoRequestDTO alunoRequest){
 
-        if(repository.existsByEmail(aluno.getEmail())){
+        if(repository.existsByEmail(alunoRequest.getEmail())){
             throw new AlunoEmailJaCadastradoException("E-mail já cadastrado.");
         }
 
-        return repository.save(aluno);
+        Aluno alunoEntidade = new Aluno();
+
+        alunoEntidade.setNome(alunoRequest.getNome());
+        alunoEntidade.setEmail(alunoRequest.getEmail());
+        alunoEntidade.setTelefone(alunoRequest.getTelefone());
+        alunoEntidade.setDataNascimento(alunoRequest.getDataNascimento());
+        alunoEntidade.setDataMatricula(alunoRequest.getDataMatricula());
+        alunoEntidade.setAtivo(alunoRequest.isAtivo());
+
+        Aluno alunoSalvo = repository.save(alunoEntidade);
+
+        AlunoResponseDTO alunoResponse = new AlunoResponseDTO();
+
+        alunoResponse.setId(alunoSalvo.getId());
+        alunoResponse.setNome(alunoSalvo.getNome());
+        alunoResponse.setEmail(alunoSalvo.getEmail());
+        alunoResponse.setTelefone(alunoSalvo.getTelefone());
+        alunoResponse.setDataNascimento(alunoSalvo.getDataNascimento());
+        alunoResponse.setDataMatricula(alunoSalvo.getDataMatricula());
+        alunoResponse.setAtivo(alunoSalvo.isAtivo());
+
+        return alunoResponse;
     }
 
     public Aluno buscarPorId(Long id){
