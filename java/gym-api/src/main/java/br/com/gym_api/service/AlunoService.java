@@ -8,6 +8,7 @@ import br.com.gym_api.model.Aluno;
 import br.com.gym_api.repository.AlunoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,45 +35,92 @@ public class AlunoService {
         alunoEntidade.setDataMatricula(alunoRequest.getDataMatricula());
         alunoEntidade.setAtivo(alunoRequest.isAtivo());
 
-        Aluno alunoSalvo = repository.save(alunoEntidade);
+        repository.save(alunoEntidade);
 
         AlunoResponseDTO alunoResponse = new AlunoResponseDTO();
 
-        alunoResponse.setId(alunoSalvo.getId());
-        alunoResponse.setNome(alunoSalvo.getNome());
-        alunoResponse.setEmail(alunoSalvo.getEmail());
-        alunoResponse.setTelefone(alunoSalvo.getTelefone());
-        alunoResponse.setDataNascimento(alunoSalvo.getDataNascimento());
-        alunoResponse.setDataMatricula(alunoSalvo.getDataMatricula());
-        alunoResponse.setAtivo(alunoSalvo.isAtivo());
+        alunoResponse.setId(alunoEntidade.getId());
+        alunoResponse.setNome(alunoEntidade.getNome());
+        alunoResponse.setEmail(alunoEntidade.getEmail());
+        alunoResponse.setTelefone(alunoEntidade.getTelefone());
+        alunoResponse.setDataNascimento(alunoEntidade.getDataNascimento());
+        alunoResponse.setDataMatricula(alunoEntidade.getDataMatricula());
+        alunoResponse.setAtivo(alunoEntidade.isAtivo());
 
         return alunoResponse;
     }
 
-    public Aluno buscarPorId(Long id){
-        return repository.findById(id)
+    public AlunoResponseDTO buscarPorId(Long id){
+
+        Aluno alunoEntidade = repository.findById(id)
                 .orElseThrow(() -> new AlunoNaoEncontradoException("Aluno não encontrado."));
+
+        AlunoResponseDTO alunoResponse = new AlunoResponseDTO();
+
+        alunoResponse.setId(alunoEntidade.getId());
+        alunoResponse.setNome(alunoEntidade.getNome());
+        alunoResponse.setEmail(alunoEntidade.getEmail());
+        alunoResponse.setTelefone(alunoEntidade.getTelefone());
+        alunoResponse.setDataNascimento(alunoEntidade.getDataNascimento());
+        alunoResponse.setDataMatricula(alunoEntidade.getDataMatricula());
+        alunoResponse.setAtivo(alunoEntidade.isAtivo());
+
+        return alunoResponse;
     }
 
-    public List<Aluno> listar(){
-        return repository.findAll();
+    public List<AlunoResponseDTO> listar(){
+
+        List<Aluno> alunosEntidade = repository.findAll();
+
+        List<AlunoResponseDTO> alunosResponse = new ArrayList<>();
+
+        for(Aluno aluno : alunosEntidade){
+
+            AlunoResponseDTO alunoResponse = new AlunoResponseDTO();
+
+            alunoResponse.setId(aluno.getId());
+            alunoResponse.setNome(aluno.getNome());
+            alunoResponse.setEmail(aluno.getEmail());
+            alunoResponse.setTelefone(aluno.getTelefone());
+            alunoResponse.setDataNascimento(aluno.getDataNascimento());
+            alunoResponse.setDataMatricula(aluno.getDataMatricula());
+            alunoResponse.setAtivo(aluno.isAtivo());
+
+            alunosResponse.add(alunoResponse);
+        }
+
+        return alunosResponse;
     }
 
-    public Aluno alterar(Long id, Aluno aluno){
-        Aluno alunoExistente = buscarPorId(id);
+    public AlunoResponseDTO alterar(Long id, AlunoRequestDTO alunoRequest){
 
-        if(repository.existsByEmailAndIdNot(aluno.getEmail(), id)){
+        Aluno alunoExistente = repository.findById(id)
+                .orElseThrow(() -> new AlunoNaoEncontradoException("Aluno não encontrado."));
+
+        if(repository.existsByEmailAndIdNot(alunoRequest.getEmail(), id)){
             throw new AlunoEmailJaCadastradoException("E-mail já cadastrado.");
         }
 
-        alunoExistente.setNome(aluno.getNome());
-        alunoExistente.setEmail(aluno.getEmail());
-        alunoExistente.setTelefone(aluno.getTelefone());
-        alunoExistente.setDataNascimento(aluno.getDataNascimento());
-        alunoExistente.setDataMatricula(aluno.getDataMatricula());
-        alunoExistente.setAtivo(aluno.isAtivo());
+        alunoExistente.setNome(alunoRequest.getNome());
+        alunoExistente.setEmail(alunoRequest.getEmail());
+        alunoExistente.setTelefone(alunoRequest.getTelefone());
+        alunoExistente.setDataNascimento(alunoRequest.getDataNascimento());
+        alunoExistente.setDataMatricula(alunoRequest.getDataMatricula());
+        alunoExistente.setAtivo(alunoRequest.isAtivo());
 
-        return repository.save(alunoExistente);
+        repository.save(alunoExistente);
+
+        AlunoResponseDTO alunoResponse = new AlunoResponseDTO();
+
+        alunoResponse.setId(alunoExistente.getId());
+        alunoResponse.setNome(alunoExistente.getNome());
+        alunoResponse.setEmail(alunoExistente.getEmail());
+        alunoResponse.setTelefone(alunoExistente.getTelefone());
+        alunoResponse.setDataNascimento(alunoExistente.getDataNascimento());
+        alunoResponse.setDataMatricula(alunoExistente.getDataMatricula());
+        alunoResponse.setAtivo(alunoExistente.isAtivo());
+
+        return alunoResponse;
     }
 
     public void deletar(Long id){
