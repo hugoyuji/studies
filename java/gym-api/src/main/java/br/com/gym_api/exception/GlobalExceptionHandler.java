@@ -1,6 +1,7 @@
 package br.com.gym_api.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -18,5 +19,11 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String tratarAlunoNaoEncontrado(AlunoNaoEncontradoException exception){
         return exception.getMessage();
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String tratarErrosValidacao(MethodArgumentNotValidException exception){
+        return "Dados inválidos.";
     }
 }

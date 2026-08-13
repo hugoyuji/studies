@@ -33,7 +33,7 @@ public class AlunoService {
         alunoEntidade.setTelefone(alunoRequest.getTelefone());
         alunoEntidade.setDataNascimento(alunoRequest.getDataNascimento());
         alunoEntidade.setDataMatricula(alunoRequest.getDataMatricula());
-        alunoEntidade.setAtivo(alunoRequest.isAtivo());
+        alunoEntidade.setAtivo(alunoRequest.getAtivo());
 
         repository.save(alunoEntidade);
 
@@ -106,7 +106,7 @@ public class AlunoService {
         alunoExistente.setTelefone(alunoRequest.getTelefone());
         alunoExistente.setDataNascimento(alunoRequest.getDataNascimento());
         alunoExistente.setDataMatricula(alunoRequest.getDataMatricula());
-        alunoExistente.setAtivo(alunoRequest.isAtivo());
+        alunoExistente.setAtivo(alunoRequest.getAtivo());
 
         repository.save(alunoExistente);
 

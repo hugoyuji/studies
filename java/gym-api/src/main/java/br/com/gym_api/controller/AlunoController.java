@@ -3,6 +3,7 @@ package br.com.gym_api.controller;
 import br.com.gym_api.dto.request.AlunoRequestDTO;
 import br.com.gym_api.dto.response.AlunoResponseDTO;
 import br.com.gym_api.service.AlunoService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class AlunoController {
     }
 
     @PostMapping
-    public AlunoResponseDTO cadastrar(@RequestBody AlunoRequestDTO alunoDTO){
+    public AlunoResponseDTO cadastrar(@RequestBody @Valid AlunoRequestDTO alunoDTO){
         return service.cadastrar(alunoDTO);
     }
 
@@ -33,7 +34,7 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public AlunoResponseDTO alterar(@PathVariable Long id, @RequestBody AlunoRequestDTO aluno){
+    public AlunoResponseDTO alterar(@PathVariable Long id, @RequestBody @Valid AlunoRequestDTO aluno){
         return service.alterar(id, aluno);
     }
 
