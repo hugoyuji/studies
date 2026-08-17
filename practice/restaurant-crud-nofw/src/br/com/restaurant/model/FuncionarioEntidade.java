@@ -1,7 +1,5 @@
 package br.com.restaurant.model;
 
-import java.time.LocalDate;
-
 public class FuncionarioEntidade {
 
     private Long id;

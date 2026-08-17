@@ -10,10 +10,10 @@ public class FuncionarioService {
 
     List<FuncionarioEntidade> funcionarioLista = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
+    Long idContador = 1L;
 
     public FuncionarioEntidade cadastrarFuncionario (){
         FuncionarioEntidade funcionario = new FuncionarioEntidade();
-        Long idContador = 1L;
 
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(scanner.nextLine());
@@ -48,13 +48,13 @@ public class FuncionarioService {
 
     public void listarFuncionarios (){
         System.out.println("""
-                =====================
-                NOME DOS FUNCIONÁRIOS
-                =====================
+                ============
+                FUNCIONÁRIOS
+                ============
                 """);
 
         for (FuncionarioEntidade funcionarioUnidade : funcionarioLista) {
-            System.out.println(funcionarioUnidade.getNome());
+            System.out.println("ID: " + funcionarioUnidade.getId() + " | " + "NOME: " + funcionarioUnidade.getNome());
         }
 
     }
