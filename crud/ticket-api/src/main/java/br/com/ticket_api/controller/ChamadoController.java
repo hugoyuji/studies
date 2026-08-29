@@ -3,6 +3,9 @@ package br.com.ticket_api.controller;
 import br.com.ticket_api.dto.request.ChamadoRequestDTO;
 import br.com.ticket_api.dto.response.ChamadoResponseDTO;
 import br.com.ticket_api.service.ChamadoService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,27 +21,32 @@ public class ChamadoController {
     }
 
     @PostMapping
-    public ChamadoResponseDTO cadastrar(@RequestBody ChamadoRequestDTO dto){
-        return service.cadastrar(dto);
+    public ResponseEntity<ChamadoResponseDTO> cadastrar(@Valid @RequestBody ChamadoRequestDTO dto){
+        ChamadoResponseDTO response = service.cadastrar(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{id}")
-    public ChamadoResponseDTO buscarPorId(@PathVariable Long id){
-        return service.buscarPorId(id);
+    public ResponseEntity<ChamadoResponseDTO> buscarPorId(@PathVariable Long id){
+        ChamadoResponseDTO response = service.buscarPorId(id);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
-    public List<ChamadoResponseDTO> listar(){
-        return service.listar();
+    public ResponseEntity<List<ChamadoResponseDTO>> listar(){
+        List<ChamadoResponseDTO> list =  service.listar();
+        return ResponseEntity.ok(list);
     }
 
     @PutMapping("/{id}")
-    public ChamadoResponseDTO alterar(@PathVariable Long id, @RequestBody ChamadoRequestDTO dto){
-        return service.alterar(dto, id);
+    public ResponseEntity<ChamadoResponseDTO> alterar(@PathVariable Long id,@Valid @RequestBody ChamadoRequestDTO dto){
+        ChamadoResponseDTO response = service.alterar(dto, id);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
         service.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

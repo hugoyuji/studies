@@ -2,6 +2,7 @@ package br.com.ticket_api.service;
 
 import br.com.ticket_api.dto.request.ChamadoRequestDTO;
 import br.com.ticket_api.dto.response.ChamadoResponseDTO;
+import br.com.ticket_api.exception.ChamadoNotFoundException;
 import br.com.ticket_api.model.Chamado;
 import br.com.ticket_api.repository.ChamadoRepository;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class ChamadoService {
 
     public ChamadoResponseDTO buscarPorId(Long id){
         Chamado chamado = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Id não encontrado."));
+                .orElseThrow(() -> new ChamadoNotFoundException(id));
 
         return new ChamadoResponseDTO(
                 chamado.getId(),
@@ -87,7 +88,7 @@ public class ChamadoService {
     public ChamadoResponseDTO alterar(ChamadoRequestDTO dto, Long id){
 
         Chamado chamado = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("ID não encontrado."));
+                .orElseThrow(() -> new ChamadoNotFoundException(id));
 
         chamado.setTitulo(dto.titulo());
         chamado.setDescricao(dto.descricao());
@@ -113,7 +114,7 @@ public class ChamadoService {
     public void deletar(Long id){
 
         repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("ID não encontrado."));
+                .orElseThrow(() -> new ChamadoNotFoundException(id));
 
         repository.deleteById(id);
     }
