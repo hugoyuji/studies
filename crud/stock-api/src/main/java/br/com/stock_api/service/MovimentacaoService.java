@@ -8,6 +8,7 @@ import br.com.stock_api.model.Produto;
 import br.com.stock_api.repository.MovimentacaoRepository;
 import br.com.stock_api.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -25,6 +26,7 @@ public class MovimentacaoService {
         this.produtoRepository = produtoRepository;
     }
 
+    @Transactional
     public MovimentacaoResponseDTO realizarMovimentacao(
             MovimentacaoRequestDTO dto) {
 
