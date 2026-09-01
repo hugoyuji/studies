@@ -2,8 +2,8 @@ package br.com.gym_api.service;
 
 import br.com.gym_api.dto.request.AlunoRequestDTO;
 import br.com.gym_api.dto.response.AlunoResponseDTO;
-import br.com.gym_api.exception.AlunoEmailJaCadastradoException;
-import br.com.gym_api.exception.AlunoNaoEncontradoException;
+import br.com.gym_api.exception.AlunoEmailAlreadyExistsException;
+import br.com.gym_api.exception.AlunoNotFoundException;
 import br.com.gym_api.model.Aluno;
 import br.com.gym_api.repository.AlunoRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class AlunoService {
     public AlunoResponseDTO cadastrar(AlunoRequestDTO alunoRequest){
 
         if(repository.existsByEmail(alunoRequest.getEmail())){
-            throw new AlunoEmailJaCadastradoException("E-mail já cadastrado.");
+            throw new AlunoEmailAlreadyExistsException("E-mail já cadastrado.");
         }
 
         Aluno alunoEntidade = new Aluno();
@@ -53,7 +53,7 @@ public class AlunoService {
     public AlunoResponseDTO buscarPorId(Long id){
 
         Aluno alunoEntidade = repository.findById(id)
-                .orElseThrow(() -> new AlunoNaoEncontradoException("Aluno não encontrado."));
+                .orElseThrow(() -> new AlunoNotFoundException("Aluno não encontrado."));
 
         AlunoResponseDTO alunoResponse = new AlunoResponseDTO();
 
@@ -95,10 +95,10 @@ public class AlunoService {
     public AlunoResponseDTO alterar(Long id, AlunoRequestDTO alunoRequest){
 
         Aluno alunoExistente = repository.findById(id)
-                .orElseThrow(() -> new AlunoNaoEncontradoException("Aluno não encontrado."));
+                .orElseThrow(() -> new AlunoNotFoundException("Aluno não encontrado."));
 
         if(repository.existsByEmailAndIdNot(alunoRequest.getEmail(), id)){
-            throw new AlunoEmailJaCadastradoException("E-mail já cadastrado.");
+            throw new AlunoEmailAlreadyExistsException("E-mail já cadastrado.");
         }
 
         alunoExistente.setNome(alunoRequest.getNome());
