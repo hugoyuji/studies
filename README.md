@@ -24,7 +24,7 @@
 
 Durante o desenvolvimento dos projetos são praticados conceitos como:
 
-* Arquitetura em camadas (controller, service, repository e entity)
+* Arquitetura em camadas (controller, service, repository e model)
 * Padrão DTO (Data Transfer Object) através de entrada e saída com Java Records 
 * Validação de entrada com Bean Validation (`@Valid`, `@NotBlank`, `@Email`)
 * Persistência de banco de dados com Spring Data JPA e PostgreSQL
@@ -41,7 +41,5 @@ Durante o desenvolvimento dos projetos são praticados conceitos como:
 > ### *"O cérebro não guarda o que você só lê ou ouve. Ele guarda o que você faz, escreve e produz por conta própria."*
 > 
 > ### — **Prof. Pierluigi Piazzi**
-
-**Desenvolvido por Hugo Yuji.**
 
 </div>
