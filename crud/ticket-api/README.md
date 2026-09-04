@@ -1,3 +1,5 @@
+<div align="left">
+
 ## 🎯 Aprendizado
 
 * **Arquitetura de camadas:** Organização clara das responsabilidades entre `Controller`, `Service`, `Repository` e `Model`.
@@ -17,8 +19,6 @@
 
 
 ## 🚀 Tecnologias Utilizadas
-
-<div align="left">
 
 ![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=java)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?style=for-the-badge&logo=springboot)
