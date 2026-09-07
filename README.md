@@ -6,7 +6,7 @@
 
 <div align="left">
 
-![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=java)
+![Java](https://img.shields.io/badge/Java-26-orange?style=for-the-badge&logo=java)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?style=for-the-badge&logo=springboot)
 ![Spring Data JPA](https://img.shields.io/badge/Spring%20Data%20JPA-ORM-blue?style=for-the-badge)
 ![Hibernate](https://img.shields.io/badge/Hibernate-Validation-red?style=for-the-badge)
