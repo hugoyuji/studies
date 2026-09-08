@@ -10,7 +10,7 @@
 
 ## 💡 Retrospectiva
 
-> Durante esse estudo, tive um contato mais próximo com a estrutura exigida em desafios de recrutamento e testes técnicos. O exercício foi disponibilizado no canal do professor Matheus Leandro Ferreira, onde tive meu primeiro contato prático com testes unitários e de integração com Spring Boot, exercitando o ciclo completo de rotas REST (`POST`, `GET` e `DELETE`).
+> Durante esse estudo, tive um contato mais próximo com a estrutura exigida em desafios de recrutamento e testes técnicos. O exercício foi disponibilizado no canal do professor Matheus Leandro Ferreira, onde tive meu primeiro contato prático com testes unitários, além de exercitar um projeto de integração com Spring Boot com requisições `POST`, `GET` e `DELETE`.
 
 ## 🚀 Tecnologias Utilizadas
 
