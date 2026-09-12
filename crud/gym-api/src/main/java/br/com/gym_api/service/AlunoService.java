@@ -35,17 +35,17 @@ public class AlunoService {
         alunoEntidade.setDataMatricula(alunoRequest.getDataMatricula());
         alunoEntidade.setAtivo(alunoRequest.isAtivo());
 
-        repository.save(alunoEntidade);
+        Aluno alunoSalvo = repository.save(alunoEntidade);
 
         AlunoResponseDTO alunoResponse = new AlunoResponseDTO();
 
-        alunoResponse.setId(alunoEntidade.getId());
-        alunoResponse.setNome(alunoEntidade.getNome());
-        alunoResponse.setEmail(alunoEntidade.getEmail());
-        alunoResponse.setTelefone(alunoEntidade.getTelefone());
-        alunoResponse.setDataNascimento(alunoEntidade.getDataNascimento());
-        alunoResponse.setDataMatricula(alunoEntidade.getDataMatricula());
-        alunoResponse.setAtivo(alunoEntidade.isAtivo());
+        alunoResponse.setId(alunoSalvo.getId());
+        alunoResponse.setNome(alunoSalvo.getNome());
+        alunoResponse.setEmail(alunoSalvo.getEmail());
+        alunoResponse.setTelefone(alunoSalvo.getTelefone());
+        alunoResponse.setDataNascimento(alunoSalvo.getDataNascimento());
+        alunoResponse.setDataMatricula(alunoSalvo.getDataMatricula());
+        alunoResponse.setAtivo(alunoSalvo.isAtivo());
 
         return alunoResponse;
     }
@@ -108,17 +108,17 @@ public class AlunoService {
         alunoExistente.setDataMatricula(alunoRequest.getDataMatricula());
         alunoExistente.setAtivo(alunoRequest.isAtivo());
 
-        repository.save(alunoExistente);
+        Aluno alunoSalvo = repository.save(alunoExistente);
 
         AlunoResponseDTO alunoResponse = new AlunoResponseDTO();
 
-        alunoResponse.setId(alunoExistente.getId());
-        alunoResponse.setNome(alunoExistente.getNome());
-        alunoResponse.setEmail(alunoExistente.getEmail());
-        alunoResponse.setTelefone(alunoExistente.getTelefone());
-        alunoResponse.setDataNascimento(alunoExistente.getDataNascimento());
-        alunoResponse.setDataMatricula(alunoExistente.getDataMatricula());
-        alunoResponse.setAtivo(alunoExistente.isAtivo());
+        alunoResponse.setId(alunoSalvo.getId());
+        alunoResponse.setNome(alunoSalvo.getNome());
+        alunoResponse.setEmail(alunoSalvo.getEmail());
+        alunoResponse.setTelefone(alunoSalvo.getTelefone());
+        alunoResponse.setDataNascimento(alunoSalvo.getDataNascimento());
+        alunoResponse.setDataMatricula(alunoSalvo.getDataMatricula());
+        alunoResponse.setAtivo(alunoSalvo.isAtivo());
 
         return alunoResponse;
     }
