@@ -3,6 +3,8 @@ package br.com.stock_api.controller;
 import br.com.stock_api.dto.request.ProdutoRequestDTO;
 import br.com.stock_api.dto.response.ProdutoResponseDTO;
 import br.com.stock_api.service.ProdutoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,27 +20,29 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ProdutoResponseDTO cadastrar(@RequestBody ProdutoRequestDTO dto){
-        return service.cadastrar(dto);
+    public ResponseEntity<ProdutoResponseDTO> cadastrar(@RequestBody ProdutoRequestDTO dto){
+        ProdutoResponseDTO response = service.cadastrar(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{id}")
-    public ProdutoResponseDTO buscarPorId(@PathVariable Long id){
-        return service.buscarPorId(id);
+    public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable Long id){
+        return ResponseEntity.ok(service.buscarPorId(id));
     }
 
     @GetMapping
-    public List<ProdutoResponseDTO> listar(){
-        return service.listar();
+    public ResponseEntity<List<ProdutoResponseDTO>> listar(){
+        return ResponseEntity.ok(service.listar());
     }
 
     @PutMapping("/{id}")
-    public ProdutoResponseDTO alterar(@RequestBody ProdutoRequestDTO dto, @PathVariable Long id){
-        return service.alterar(dto, id);
+    public ResponseEntity<ProdutoResponseDTO> alterar(@RequestBody ProdutoRequestDTO dto, @PathVariable Long id){
+        return ResponseEntity.ok(service.alterar(dto, id));
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
         service.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }
