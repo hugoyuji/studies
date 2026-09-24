@@ -3,6 +3,8 @@ package br.com.stock_api.service;
 import br.com.stock_api.dto.request.MovimentacaoRequestDTO;
 import br.com.stock_api.dto.response.MovimentacaoResponseDTO;
 import br.com.stock_api.enums.TipoMovimentacao;
+import br.com.stock_api.exception.EstoqueInsuficienteException;
+import br.com.stock_api.exception.ProdutoNotFoundException;
 import br.com.stock_api.model.Movimentacao;
 import br.com.stock_api.model.Produto;
 import br.com.stock_api.repository.MovimentacaoRepository;
@@ -44,7 +46,7 @@ public class MovimentacaoService {
         } else if (dto.tipo() == TipoMovimentacao.SAIDA) {
 
             if (produto.getQuantidade() < dto.quantidade()) {
-                throw new RuntimeException("Estoque insuficiente.");
+                throw new EstoqueInsuficienteException("Estoque insuficiente para realizar esta saída.");
             }
 
             produto.setQuantidade(

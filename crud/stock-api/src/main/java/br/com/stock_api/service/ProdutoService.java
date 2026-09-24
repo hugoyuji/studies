@@ -2,6 +2,7 @@ package br.com.stock_api.service;
 
 import br.com.stock_api.dto.request.ProdutoRequestDTO;
 import br.com.stock_api.dto.response.ProdutoResponseDTO;
+import br.com.stock_api.exception.ProdutoNotFoundException;
 import br.com.stock_api.model.Produto;
 import br.com.stock_api.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class ProdutoService {
 
     public ProdutoResponseDTO buscarPorId(Long id){
         Produto produto = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado."));
+                .orElseThrow(() -> new ProdutoNotFoundException("Produto não encontrado."));
 
         return new ProdutoResponseDTO(
                 produto.getId(),
