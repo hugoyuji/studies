@@ -1,6 +1,7 @@
 package br.com.stock_api.service;
 
 import br.com.stock_api.dto.request.MovimentacaoRequestDTO;
+import br.com.stock_api.dto.request.TransferenciaRequestDTO;
 import br.com.stock_api.dto.response.MovimentacaoResponseDTO;
 import br.com.stock_api.enums.TipoMovimentacao;
 import br.com.stock_api.exception.EstoqueInsuficienteException;
@@ -33,9 +34,7 @@ public class MovimentacaoService {
             MovimentacaoRequestDTO dto) {
 
         Produto produto = produtoRepository.findById(dto.produtoId())
-                .orElseThrow(() ->
-                        new RuntimeException("Produto não encontrado.")
-                );
+                .orElseThrow(() -> new ProdutoNotFoundException("Produto não encontrado."));
 
         if (dto.tipo() == TipoMovimentacao.ENTRADA) {
 
@@ -72,5 +71,30 @@ public class MovimentacaoService {
                 movimentacao.getDataHora(),
                 movimentacao.getTipo()
         );
+    }
+
+    @Transactional
+    public void realizarTransferencia(TransferenciaRequestDTO dto){
+        Produto origem = produtoRepository.findById(dto.produtoOrigemId())
+                .orElseThrow(() -> new ProdutoNotFoundException("Produto de origem não encontrado."));
+
+        Produto destino = produtoRepository.findById(dto.produtoDestinoId())
+                .orElseThrow(() -> new ProdutoNotFoundException("Produto de destino não encontrado."));
+
+        if(origem.getQuantidade() < dto.quantidade()){
+            throw new EstoqueInsuficienteException("Estoque insuficiente no produto de origem para realizar a transferência.");
+        }
+
+        origem.setQuantidade(origem.getQuantidade() - dto.quantidade());
+        destino.setQuantidade(destino.getQuantidade() + dto.quantidade());
+
+        produtoRepository.save(origem);
+        produtoRepository.save(destino);
+
+        Movimentacao saida = new Movimentacao(origem, dto.quantidade(), LocalDateTime.now(), TipoMovimentacao.SAIDA);
+        Movimentacao entrada = new Movimentacao(destino, dto.quantidade(), LocalDateTime.now(), TipoMovimentacao.ENTRADA);
+
+        movimentacaoRepository.save(saida);
+        movimentacaoRepository.save(entrada);
     }
 }
