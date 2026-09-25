@@ -3,6 +3,7 @@ package br.com.stock_api.controller;
 import br.com.stock_api.dto.request.ProdutoRequestDTO;
 import br.com.stock_api.dto.response.ProdutoResponseDTO;
 import br.com.stock_api.service.ProdutoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoResponseDTO> cadastrar(@RequestBody ProdutoRequestDTO dto){
+    public ResponseEntity<ProdutoResponseDTO> cadastrar(@RequestBody @Valid ProdutoRequestDTO dto){
         ProdutoResponseDTO response = service.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -36,7 +37,7 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoResponseDTO> alterar(@RequestBody ProdutoRequestDTO dto, @PathVariable Long id){
+    public ResponseEntity<ProdutoResponseDTO> alterar(@RequestBody @Valid ProdutoRequestDTO dto, @PathVariable Long id){
         return ResponseEntity.ok(service.alterar(dto, id));
     }
 
