@@ -12,7 +12,7 @@
 
 ## 💡 Retrospectiva
 
-> Durante o estudo dessa API de estoque, alguns aprendizados mereceram maior destaque, especialmente o uso do `transactional` para a realização de operações mais seguras e uma maior consistência nos dados persistidos no banco. Além de ter, também, possibilitado praticar um projeto com múltiplas entidades que interagem entre si.
+> Durante o estudo dessa API de estoque, alguns aprendizados mereceram maior destaque, especialmente o uso do transactional para a realização de operações mais seguras e uma maior consistência nos dados persistidos no banco. Além de ter, também, possibilitado praticar um projeto com múltiplas entidades que interagem entre si.
 
 ## 🚀 Tecnologias Utilizadas
 
