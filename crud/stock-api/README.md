@@ -8,7 +8,7 @@
 * **Integridade de Transações:** Utilização da anotação `@Transactional` para garantir operações seguras de banco de dados, permitindo rollback automático em caso de falhas nas transferências ou atualizações de estoque.
 * **Validação de dados:** Proteção dos payloads de entrada (Bean Validation) com anotações como `@Valid`, `@NotBlank`, `@NotNull` e `@Min` para barrar requisições inconsistentes antes mesmo de chegarem às regras de negócio.
 * **Tratamento global de exceções:** Implementação da camada `@RestControllerAdvice` para capturar exceções customizadas e devolver respostas de erro limpas e padronizadas com os devidos status HTTP (400, 404).
-* **Documentação interativa:** Mapeamento das rotas utilizando Swagger / OpenAPI.
+* **Documentação interativa:** Mapeamento das rotas utilizando Swagger/OpenAPI.
 
 ## 💡 Retrospectiva
 
