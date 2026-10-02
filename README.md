@@ -1,4 +1,4 @@
-# 📚 Studies
+# 💻 Studies
 
 > Este repositório reúne meus projetos de estudo, testes práticos e pequenas aplicações desenvolvidas para praticar desde os fundamentos da linguagem até arquiteturas modernas, boas práticas de código, testes e padrões do mercado.
 
