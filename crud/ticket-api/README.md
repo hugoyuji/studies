@@ -9,7 +9,7 @@
 * **Tratamento centralizado de exceções:** Implementação do `@RestControllerAdvice` para padronizar respostas de erro (400, 404).
 * **Testes manuais com Postman:** Construção de requisições cobrindo cenários de sucesso (`201 Created`, `200 OK`, `204 No Content`), erros de validação (`400 Bad Request`) e recursos ausentes (`404 Not Found`).
 * **Testes unitários:** Cobertura de regras de negócio com JUnit 5 e Mockito para simulação de dependências.
-* **Documentação interativa:** Mapeamento das rotas utilizando Swagger / OpenAPI.
+* **Documentação interativa:** Mapeamento das rotas utilizando Swagger/OpenAPI.
 
 ## 💡 Retrospectiva
 
