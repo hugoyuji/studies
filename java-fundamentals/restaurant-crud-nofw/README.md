@@ -4,7 +4,7 @@
 
 ## 💡 Retrospectiva
 
-> Foi um excelente exercício para fixar conceitos fundamentais da POO (Programação Orientada a Objetos) e estruturas de dados em Java, trabalhando a separação de responsabilidades entre `model`, `service` e fluxo de execução no console.
+> Foi um excelente exercício para fixar conceitos fundamentais da POO (Programação Orientada a Objetos) e estruturas de dados em Java, trabalhando a separação de responsabilidades entre `Model`, `Service` e fluxo de execução no console.
 
 ## 🚀 Tecnologias Utilizadas
 
