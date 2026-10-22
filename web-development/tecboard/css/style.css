@@ -1,7 +1,6 @@
 @font-face {
     font-family: "Unbounded";
-    src: url("../fonts/Unbounded-Bold.ttf")
-    format("truetype");
+    src: url("../fonts/Unbounded-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -9,8 +8,7 @@
 
 @font-face {
     font-family: "Poppins";
-    src: url("../fonts/Poppins-Regular.ttf")
-    format("truetype");
+    src: url("../fonts/Poppins-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -21,27 +19,37 @@
     padding: 0;
 }
 
-body{
+body {
     background-color: #0E1014;
     color: #FFFFFF;
 }
 
-h1{
+header img {
+    display: block;
+    margin: 75px 0 0 360px;
+}
+
+h1 {
     font-family: "Unbounded", sans-serif;
     font-size: 64px;
     font-weight: bold;
+    text-align: center;
+    margin-top: 60px;
 }
 
-p{
+p {
     font-family: "Poppins", sans-serif;
     font-size: 24px;
+    text-align: center;
+    margin: 24px auto 0;
+    width: 792px;
 }
 
-h1 span{
+h1 span {
     color: #9747FF;
 }
 
-a{
+a {
     font-family: "Poppins", sans-serif;
     font-size: 24px;
     color: #FFFFFF;
@@ -53,5 +61,16 @@ a{
     text-align: center;
     line-height: 66px;
     border-radius: 36px;
+    margin: 40px auto;
+}
 
+a:hover {
+    background-color: #8233E8;
+}
+
+section img {
+    display: block;
+    width: 792px;
+    height: 446px;
+    margin: 0 auto;
 }
